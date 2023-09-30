@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define pb push_back
+#define ff first
+#define ss second
+#define mp make_pair
+#define ios ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+ 
+int main()
+{   
+    ll t;
+    cin>>t;
+    while(t--) {
+        ll n,k=3;
+        cin>>n;
+        while(n--) {
+            cout<<k<<" ";
+            k+=2;
+        }
+        cout<<endl;
+    }
+    return 0;     
+ }
