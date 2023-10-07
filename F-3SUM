@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long 
+
+const int N=2e5+5;
+const int mod=1e9+7;
+int a[N];
+
+
+vector<map<int,int> >requiredcnt;
+
+void preprocess()
+{
+	for(int i=0;i<10;i++)
+		for(int j=0;j<10;j++)
+			for(int k=0;k<10;k++)
+			{
+				if((i+j+k)%10==3)
+				{
+					map<int,int>temp;
+					temp[i]++;
+					temp[j]++;
+					temp[k]++;
+					requiredcnt.push_back(temp);
+					temp.clear();
+				}
+			}
+
+}
+void solve(){
+	int n;
+	cin>>n;
+	map<int,int>mp;
+	for(int i=0;i<n;i++)
+	{
+		int x;
+		cin>>x;
+		mp[x%10]++;
+	}
+
+	for(auto it:requiredcnt)
+	{
+		bool flag=0;
+		for(auto jt:it)
+		{
+			if(mp[jt.first]<jt.second)
+				flag=1;
+		}
+		if(flag==0)
+		{
+			cout<<"YES"<<endl;
+			return;
+		}
+	}
+cout<<"NO"<<endl;
+
+}
+
+int32_t main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+	preprocess();
+    int T=1;
+    cin>>T;
+    while(T--){
+        solve();
+    }
+}
