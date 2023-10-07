@@ -1,0 +1,16 @@
+for _ in range(int(input())):
+    input()
+    n, k = map(int,input().split())
+    u =  input().split()
+    front = {}
+    back = {}
+    for i, x in enumerate(u):
+        if x not in front:
+            front[x]=i
+        back[x]=i
+    for i in range(k):
+        a, b = input().split()
+        if a in front and b in back and front[a]<back[b]:
+            print("YES")
+        else:
+            print("NO")
