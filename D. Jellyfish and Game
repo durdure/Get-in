@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+	
+int main()
+{
+	
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	
+	int t;
+	cin >> t;
+	
+	for(; t; t--)
+	{
+		int n, m, k;
+		cin >> n >> m >> k;
+		multiset<int> sa, sb;
+		long long suma = 0, sumb = 0;
+		for(int i = 0; i < n; i++)
+		{
+			int x;
+			cin >> x;
+			suma += x;
+			sa.insert(x);
+		}
+		for(int i = 0; i < m; i++)
+		{
+			int x;
+			cin >> x;
+			sumb += x;
+			sb.insert(x);
+		}
+		int max_rounds = k;
+		if(k > 80)
+		{
+			if(k % 2 == 0)
+				max_rounds = 80;
+			else
+				max_rounds = 81;
+		}
+		for(int i = 1; i <= max_rounds; i++)
+		{
+			if(i % 2 == 1)
+			{
+				int x = *sa.begin();
+				int y = *sb.rbegin();
+				if(x < y)
+				{
+					sa.erase(sa.lower_bound(x));
+					sb.erase(sb.lower_bound(y));
+					suma -= x;
+					sumb -= y;
+					suma += y;
+					sumb += x;
+					sa.insert(y);
+					sb.insert(x);
+				}
+			}
+			else
+			{
+				int x = *sb.begin();
+				int y = *sa.rbegin();
+				if(x < y)
+				{
+					sb.erase(sb.lower_bound(x));
+					sa.erase(sa.lower_bound(y));
+					sumb -= x;
+					suma -= y;
+					sumb += y;
+					suma += x;
+					sb.insert(y);
+					sa.insert(x);
+				}
+			}
+		}
+		
+		cout << suma << '\n';
+	}
+	return 0;
+}
